@@ -1,5 +1,4 @@
 import authServices from "../../src/services/authServices";
-import authServices from "./authServices";
 
 const authLoader = async () => {
   try {
@@ -20,4 +19,3 @@ const authLoader = async () => {
 };
 
 export default authLoader;
-
