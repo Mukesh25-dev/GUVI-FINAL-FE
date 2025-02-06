@@ -13,12 +13,8 @@ const authServices = {
   logout: async () => {
     return await instance.post("/auth/logout");
   },
-  me: async (token) => {
-    return await instance.get("/auth/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  me: async () => {
+    return await instance.get("/auth/me");
   },
 };
 
