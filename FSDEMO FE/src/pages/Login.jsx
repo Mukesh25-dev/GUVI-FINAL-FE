@@ -23,29 +23,38 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Your code to handle login goes here
 
     try {
+      // Perform login and retrieve token
       const response = await instance.post("/auth/login", { email, password });
 
       if (response.status === 200) {
         toast.success("Login Successful!");
 
-        const response = await authServices.me();
-        dispatch(setUser(response.data));
+        const token = response.data.token;
 
+        // Store the token in localStorage
+        localStorage.setItem("authToken", token);
+
+        // Fetch user profile with token
+        const profileResponse = await authServices.me(token);
+
+        // Update Redux store with user data
+        dispatch(setUser(profileResponse.data));
+
+        // Clear form fields
         dispatch(setEmail(""));
         dispatch(setPassword(""));
 
+        // Navigate after a short delay
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 500);
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Login failed!");
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
