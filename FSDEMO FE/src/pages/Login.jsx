@@ -37,7 +37,7 @@ const Login = () => {
         localStorage.setItem("authToken", token);
 
         // Fetch user profile with token
-        const profileResponse = await authServices.me(token);
+        const profileResponse = await instance.get("/auth/me", token);
 
         // Update Redux store with user data
         dispatch(setUser(profileResponse.data));
