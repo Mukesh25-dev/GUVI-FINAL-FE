@@ -8,6 +8,7 @@ import { selectUser } from "../../../redux/features/auth/userSlice";
 
 const CandidateDashboard = () => {
   const events = useLoaderData();
+  console.log(events);
   const navigate = useNavigate();
   const userId = { userid: "user._id" };
 
