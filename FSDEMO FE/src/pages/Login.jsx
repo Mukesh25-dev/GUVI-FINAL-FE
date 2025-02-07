@@ -32,6 +32,7 @@ const Login = () => {
 
       if (response.status === 200) {
         toast.success("Login Successful!");
+        console.log(response)
 
         // Fetch user profile
         const profileResponse = await instance.get("/auth/me");
