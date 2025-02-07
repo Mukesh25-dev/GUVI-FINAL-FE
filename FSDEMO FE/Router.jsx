@@ -97,6 +97,12 @@ const routes = [
             loader: registerEventLoader,
             hydrateFallBackElement: <p>loading....</p>,
           },
+          {
+            path:'tickets',
+            element: <MyTickets />,
+            loader: TicketLoader,
+            hydrateFallBackElement: <p>loading....</p>,
+          }
         ],
       },
       {
