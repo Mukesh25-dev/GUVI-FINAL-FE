@@ -37,7 +37,7 @@ const Register = () => {
         dispatch(setPassword(""));
 
         //navigate the users to login
-        navigate("/login");
+        navigate("/register-verification");
       }
     } catch (error) {
       toast.error(error.response.data.message);

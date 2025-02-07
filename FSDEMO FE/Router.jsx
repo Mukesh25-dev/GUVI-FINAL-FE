@@ -26,6 +26,8 @@ import AdminTickets from "./src/pages/admin/AdminTickets";
 import TicketLoader from "./loaders/unit/TicketLoader";
 import BookTickets from "./src/pages/BookTickets";
 import RegVerification from "./src/pages/RegVerification";
+// import RequestPasswordReset from "./src/pages/RequestPasswordReset";
+// import ResetPassword from "./src/pages/ResetPassword";
 const routes = [
   {
     path: "/",
