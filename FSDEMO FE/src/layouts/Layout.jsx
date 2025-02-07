@@ -6,6 +6,7 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
 
   const user = useSelector(selectUser);
+  console.log(user);
 
   return (
     <div className="">
