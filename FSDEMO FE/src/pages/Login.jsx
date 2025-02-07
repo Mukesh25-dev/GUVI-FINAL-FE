@@ -24,7 +24,11 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await instance.post("/auth/login", { email, password });
+      const response = await instance.post(
+        "/auth/login",
+        { email, password },
+        { withCredentials: true }
+      );
 
       if (response.status === 200) {
         toast.success("Login Successful!");
