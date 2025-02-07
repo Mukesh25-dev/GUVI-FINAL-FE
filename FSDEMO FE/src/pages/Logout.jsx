@@ -8,26 +8,29 @@ import { clearUser } from "../../redux/features/auth/userSlice";
 const Logout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const logoutUser = async () => {
-    try {
-      const response = await instance.post("/auth/logout");
-      if (response.status === 200) {
-        toast.success(response.data.message);
 
-        dispatch(clearUser());
-
-        setTimeout(() => {
-          navigate("/");
-        }, 500);
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  };
   useEffect(() => {
+    const logoutUser = async () => {
+      try {
+        const response = await instance.post("/auth/logout");
+        if (response.status === 200) {
+          toast.success(response.data.message);
+          dispatch(clearUser());
+
+          // Small delay for better user experience
+          setTimeout(() => {
+            navigate("/login");
+          }, 500);
+        }
+      } catch (error) {
+        toast.error(error?.response?.data?.message || "Logout failed");
+      }
+    };
+
     logoutUser();
-  }, []);
-  return <div>Logging out....</div>;
+  }, [dispatch, navigate]);
+
+  return <div>Logging out...</div>;
 };
 
 export default Logout;
