@@ -98,11 +98,11 @@ const routes = [
             hydrateFallBackElement: <p>loading....</p>,
           },
           {
-            path:'tickets',
+            path: "tickets",
             element: <MyTickets />,
             loader: TicketLoader,
             hydrateFallBackElement: <p>loading....</p>,
-          }
+          },
         ],
       },
       {
@@ -122,7 +122,7 @@ const routes = [
         hydrateFallBackElement: <p>loading....</p>,
       },
       {
-        path: "/my-tickets/:userId", // :userId as a dynamic parameter
+        path: "/tickets/:userId", // :userId as a dynamic parameter
         element: <MyTickets />,
         loader: TicketLoader,
         hydrateFallBackElement: <p>loading....</p>,
