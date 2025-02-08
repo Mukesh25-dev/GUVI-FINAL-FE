@@ -41,9 +41,6 @@ const Layout = ({ children }) => {
               <Link to="/candidate/applications" className="mr-4">
                 Applications
               </Link>
-              <Link to="/candidate/tickets" className="mr-4">
-                My Tickets
-              </Link>
             </>
           )}
           {user && user.role === "organiser" && (

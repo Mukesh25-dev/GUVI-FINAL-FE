@@ -1,11 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import profileServices from "../../services/profileServices";
 import { toast } from "react-toastify";
 
 const CandidateProfile = () => {
   const user = useLoaderData();
-  console.log(user);
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     const confirmation = window.confirm(
@@ -15,6 +15,7 @@ const CandidateProfile = () => {
       try {
         const response = await profileServices.deleteProfile(user._id);
         toast.success(response.data.message);
+        // Redirect or clear the session after deletion if needed
       } catch (error) {
         toast.error(
           error.response?.data?.message || "Failed to delete profile."
@@ -23,6 +24,10 @@ const CandidateProfile = () => {
     } else {
       toast.info("Profile deletion canceled.");
     }
+  };
+
+  const handleGoToTickets = () => {
+    navigate(`/tickets/${user._id}`);
   };
 
   return (
@@ -42,12 +47,18 @@ const CandidateProfile = () => {
               {new Date(user.createdAt).toLocaleDateString()}
             </p>
           </div>
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center gap-4 mt-6">
             <button
               className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all shadow-md"
               onClick={handleDelete}
             >
               Delete Profile
+            </button>
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all shadow-md"
+              onClick={handleGoToTickets}
+            >
+              Go to My Tickets
             </button>
           </div>
         </div>
