@@ -1,15 +1,17 @@
 import instance from "./instance";
 
 const ticketServices = {
-  getTickets: async () => {
+  getTickets: async (userId) => {
     try {
-      // Ensure that userId is being correctly passed into the API URL
+      if (!userId) {
+        throw new Error("User ID is required");
+      }
       const response = await instance.get(`/user/tickets/${userId}`);
-      console.log("Tickets fetched:", response.data); // Debugging log
+      console.log("Tickets fetched:", response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching tickets:", error);
-      throw error; // Rethrow the error to be handled in the loader
+      throw error;
     }
   },
 };
